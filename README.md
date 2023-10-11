@@ -12,7 +12,6 @@ Para desenvolvimento foram utilizados algumas tecnologias:
 Back-end: 
  - C#;
  - .Net 6
- - 
 
 # Ferramentas:
  - Para edição de texto e a programação em si foi utilizada a IDE Visual Studio; 
