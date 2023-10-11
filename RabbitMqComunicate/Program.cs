@@ -10,6 +10,7 @@ var factory = new ConnectionFactory
     Port = 5672,
     UserName = "guest",
     Password = "guest",
+    VirtualHost = "guiando",
     ClientProvidedName = "teste",
 };
 
@@ -18,7 +19,7 @@ using var connection = factory.CreateConnection();
 using var channel = connection.CreateModel();
 const string queueName = "fila_teste";
 
-channel.QueueDeclare(queue: queueName, durable: false, exclusive: false, autoDelete: false, arguments: null);
+channel.QueueDeclare(queue: queueName, durable: true, exclusive: false, autoDelete: false, arguments: null);
 var consumer = new EventingBasicConsumer(channel);
 
 consumer.Received += (model, ea) =>
@@ -30,3 +31,6 @@ consumer.Received += (model, ea) =>
 
 // Registre o consumidor na fila
 channel.BasicConsume(queue: queueName, autoAck: true, consumer: consumer);
+
+Console.WriteLine("Aperte qualquer tecla para encerrar o consumer");
+Console.ReadLine();
